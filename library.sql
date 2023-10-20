@@ -1,7 +1,17 @@
+DROP TABLE books;
+DROP TABLE authors;
+DROP TABLE borrowers;
+
 CREATE TABLE authors (
   author_id int NOT NULL AUTO_INCREMENT,
   name varchar(80) DEFAULT NULL,
   PRIMARY KEY (author_id)
+);
+
+CREATE TABLE borrowers (
+  borrower_id int NOT NULL AUTO_INCREMENT,
+  name varchar(80) DEFAULT NULL,
+  PRIMARY KEY (borrower_id)
 );
 
 CREATE TABLE books (
@@ -12,33 +22,36 @@ CREATE TABLE books (
   publisher varchar(45) DEFAULT NULL,
   pages int DEFAULT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (author_id) REFERENCES authors (author_id)
-);
-
-CREATE TABLE borrowers (
-  borrower_id int NOT NULL AUTO_INCREMENT,
-  name varchar(80) DEFAULT NULL,
-  PRIMARY KEY (borrower_id)
+  FOREIGN KEY (author_id) REFERENCES authors (author_id),
+  FOREIGN KEY (borrower_id) REFERENCES borrowers (borrower_id)
 );
 
 INSERT INTO authors (name)
 VALUES
 ('JRR Tolkien'),
-('Jane Austen');
-
-INSERT INTO books (title, author_id, publisher, pages)
-VALUES ('The Lord of the Rings', '1', 'Allen & Unwin', 500);
-
-INSERT INTO books (title, author_id, borrower_id, publisher, pages)
-VALUES ('The Hobbit', '1', '1', 'Allen & Unwin', 500);
-
-INSERT INTO books (title, author_id, borrower_id, publisher, pages)
-VALUES ('Pride and Prejudice', '2', '2', 'Penguin Classics', 300);
+('Jane Austen'),
+('William Shakespeare'),
+('Charles Dickens');
 
 INSERT INTO borrowers (name)
 VALUES
 ('John'),
-('Sarah');
+('Sarah'),
+('Emily'),
+('David');
+
+INSERT INTO books (title, author_id, publisher, pages)
+VALUES
+('The Lord of the Rings', '1', 'Allen & Unwin', 500),
+('Hamlet', '3', 'Penguin Classics', 400);
+
+INSERT INTO books (title, author_id, borrower_id, publisher, pages)
+VALUES
+('The Hobbit', '1', '1', 'Allen & Unwin', 500),
+('Pride and Prejudice', '2', '2', 'Penguin Classics', 300),
+('A Tale of Two Cities', '4', '3', 'Penguin Classics', 350),
+('Great Expectations', '4', '4', 'Penguin Classics', 500),
+('Romeo and Juliet', '3', NULL, 'Penguin Classics', 300);
 
 -- List all books
 SELECT * FROM books;
