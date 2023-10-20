@@ -1,7 +1,3 @@
-DROP TABLE books;
-DROP TABLE authors;
-DROP TABLE borrowers;
-
 CREATE TABLE authors (
   author_id int NOT NULL AUTO_INCREMENT,
   name varchar(80) DEFAULT NULL,
