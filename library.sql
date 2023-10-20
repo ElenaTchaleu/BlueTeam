@@ -58,31 +58,31 @@ INNER JOIN authors ON books.author_id = authors.author_id;
 SELECT books.title, borrowers.name
 FROM books
 INNER JOIN borrowers ON books.borrower_id = borrowers.borrower_id
-WHERE borrowers.name = 'John'; -- returns a list of all books borrowed by John.
+WHERE borrowers.name = 'John';
 
 -- List all books not borrowed by any borrower
 SELECT *
 FROM books
-WHERE borrower_id IS NULL; -- returns a list of all books that are not borrowed by any borrower.
+WHERE borrower_id IS NULL;
 
 -- List all authors and their book count
 SELECT authors.name, COUNT(books.id) AS book_count
 FROM authors
 LEFT JOIN books ON authors.author_id = books.author_id
-GROUP BY authors.name; -- returns a list of all authors and their respective book counts.
+GROUP BY authors.name;
 
 -- List all publishers and their book count
 SELECT publisher, COUNT(id) AS book_count
 FROM books
-GROUP BY publisher; -- returns a list of all publishers and their respective book counts.
+GROUP BY publisher;
 
 -- List all publishers and their average book length
 SELECT publisher, AVG(pages) AS avg_book_length
 FROM books
-GROUP BY publisher; -- returns a list of all publishers and their average book length.
+GROUP BY publisher;
 
 -- List all authors who have written more than one book
 SELECT authors.name, COUNT(books.id) AS book_count
 FROM authors
 LEFT JOIN books ON authors.author_id = books.author_id
-GROUP BY authors.name HAVING COUNT(books.id) > 1; -- returns a list of all authors who have written more than one book.
+GROUP BY authors.name HAVING COUNT(books.id) > 1; 
