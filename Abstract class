@@ -1,0 +1,10 @@
+public class Main {
+    public static void main (String[] args) {
+        Animal[] array = {new Cat()};
+
+        for (Animal a: array) {
+            a.animalSound();
+
+        }
+    }
+}
